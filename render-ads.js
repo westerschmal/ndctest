@@ -28,14 +28,16 @@ export default (adConfiguration) => {
 
   if (adConfiguration.headerBidding.active) {
     //Set config to high price granularity
-    window.pbjs.setConfig({ priceGranularity: "high" });
-    const prebidTimeout = 700;
+/*    window.pbjs.setConfig({ priceGranularity: "high" });
+    const prebidTimeout = 700;*/
     window.googletag.cmd.push(function () {
       window.googletag.pubads().disableInitialLoad();
       logger("GPT - Step #3: Disabled initial load");
     });
 
-    const prebidAdUnits = setupPrebidAdUnits(adConfiguration);
+    window.Adhese.defineAdUnits(adConfiguration); //might want to check if Adhese object exists
+
+/*    const prebidAdUnits = setupPrebidAdUnits(adConfiguration);
     window.pbjs = window.pbjs || {};
     window.pbjs.que = window.pbjs.que || [];
 
@@ -49,7 +51,7 @@ export default (adConfiguration) => {
 
     setTimeout(() => {
       prebidHandleAdServer(true);
-    }, prebidTimeout);
+    }, prebidTimeout);*/
   } else {
     window.googletag.cmd.push(() => {
       displayAds(adConfiguration);
